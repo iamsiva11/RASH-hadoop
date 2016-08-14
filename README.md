@@ -8,10 +8,15 @@ The improvement of file access performance is a great challenge in realtime jobs
 
 ###Issues
 1 Lack of Resource aware scheduler in Heterogeneous environment
+
 2 Data Locality
+
 3 Near Maximum utilisation and allocation of best resources available in the cluster
+
 4 Tasks that require global synchronization or sharing of mutable data are not a good fit
+
 5 Workload characterization from various Hadoop sites.A framework for capturing workload statistics and replaying workload simulations to allow the assessment of framework improvements
+
 6 Finer level of Job and Node classification( taking network traffic to a node etc into account)
 
 ###OBJECTIVES
@@ -19,8 +24,8 @@ Resource aware scheduling by finer classification of jobs and nodes by taking va
 
 Developing efficient Distributed Cache Architecture for the hadoop environment.
 
-Tools used
-Apache Hadoop,Java
+#####Tools used
+Apache Hadoop, Java
 
 Amazon Public Dataset:
 Data sets are taken from http://aws.amazon.com/publicdatasets/ where in we run the Mapreduce jobs using various datasets to test the performance of the scheduler and cache developed by exposing it under different kinds of datasets.
@@ -36,7 +41,6 @@ Production jobs: load data, compute statistics, detect spam, etc. Long experimen
 
 Small ad-hoc queries: Hive jobs, sampling.
 
-Additional Materials,Resources
 
 ####DETAILED ANALYSIS
 
@@ -49,16 +53,26 @@ Similarly we will test the cache algorithm and make some improvements. Finally o
 Job classifier Algorithm:
 
 Algorithm 1: Job Classification
+
 for each job in the job batch-jobs log 
+
 do calculate average map rate = tmavg /Bmap average reduce rate = travg/Breduce
+
 if average map rate < disk rate then
+
 map task is CPU bound; 
-end
-else map task is IO bound;
-if average reduce rate < disk rate then
-reduce task is CPU bound ; 
-end
-else reduce task is IO bound; 
+
 end
 
-<Add IMAGES at APPROPRIARTE PLACES>
+else map task is IO bound;
+
+if average reduce rate < disk rate then
+
+reduce task is CPU bound ; 
+
+end
+
+else reduce task is IO bound; 
+
+end
+
